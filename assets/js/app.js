@@ -1,9 +1,42 @@
 // Variables
-var timerEl = document.querySelector("#timer");
-var startBtn = document.querySelector("#start-btn")
 
-//Time Remaining
+//Timer
+var timerEl = document.querySelector("#timer");
 var timeRemaining = 60;
+
+//Start Page
+var startBtn = document.querySelector("#start-btn")
+var startPage = document.getElementById("start-page")
+
+//Question Array
+var questions = [
+  {
+    questiontext: "Which planet is the hottest in the solar system?",
+    answers:["Venus", "Mercury", "Uranus", "Saturn"],
+    correctanswer: "Venus"
+  },
+  {
+    questiontext: "Which body part can you find the femur?",
+    answers:["Arm", "Head", "Spine", "Leg"],
+    correctanswer: "Leg"
+  },
+  {
+    questiontext: "Which natural disaster is measured with a Richter scale?",
+    answers:["Hurricanes", "Earthquakes", "Tornados", "Wildfires"],
+    correctanswer: "Earthquakes"
+  },
+  {
+    questiontext: "",
+    answers:[""],
+    correctanswer: ""
+  },
+  {
+    questiontext: "",
+    answers:[""],
+    correctanswer: ""
+  },
+
+]
 
 //Timer countdown function
 function setTime() {
@@ -22,7 +55,7 @@ function setTime() {
 // Listen for a click event on start button
 startBtn.addEventListener("click", function(){
     //Hides start-page element
-    document.getElementById("start-page").style.display = "none"
+    startPage.style.display = "none"
     //show question-page element
     document.getElementById("question-page").style.display = "inline-block"
     //Runs countdown timer
