@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS Link-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- End Css Link-->
     <title>Code Quiz!</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Timer -->
-    <!-- Intro Page, Starter text, start button -->
-    <!-- Question block with answer buttons -->
-    <!-- Score block -->
-    <!-- High Scores -->
+    <div id="timer">Time: 60</div>
+    <!-- Header -->
+    <header id="header"><h1>Code Quiz</h1></header>
+    <!-- Container for Intro Page, Question Page, and High Score -->
+    <div class="container container-bgcolor">
+        <!-- Intro Page, Starter text, start button -->
+      <div id="start-page">
+        <h2>
+          Test your coding know-how! Right questions move on, wrong questions
+          cost you score. Your score is equal to the time remaining when you finish!
+        </h2>
+        <hr>
+        <h2>Click the start button to get started</h2>
+        <button id="start-btn" type="button" class="btn btn-primary">Start Quiz</button>
+      </div>
+      <!-- Question block with answer buttons -->
+      <div id="question-page">
+          I'm working!
+      </div>
+      <!-- Score block -->
+      <!-- High Scores -->
+    </div>
 
-
-
-
-<!-- Javascript Link -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="assets/js/app.js"></script>
-<!-- End Javascript Link -->
-</body>
+    <!-- Javascript Link -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!-- End Javascript Link -->
+  </body>
 </html>
