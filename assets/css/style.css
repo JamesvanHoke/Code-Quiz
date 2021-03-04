@@ -1,3 +1,34 @@
-html {
-    max-width: auto;
+#header {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+body {
+    text-align: center;
+}
+
+.container-bgcolor {
+    background-color: #ddbea9;
+}
+
+#timer {
+    position: fixed;
+    top: 40px;
+    right: 20px
+}
+
+html,
+body,
+.wrapper {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#start-page {
+    padding-bottom: 10px;
+}
+
+#question-page {
+    display:none;
 }
