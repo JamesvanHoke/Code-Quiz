@@ -16,6 +16,9 @@ var questionResult = document.getElementById("answersResult");
 
 //Score Page
 var scorePage = document.getElementById("score-page");
+var scorePageText = document.getElementById("score-page-text");
+var retryBtn = document.getElementById("retry-btn");
+var submitBtn = document.getElementById("submit-btn");
 
 //Question Array + Answers
 var questions = [
@@ -50,7 +53,10 @@ var currentQuestion = 0;
 startBtn.addEventListener("click", gameStart);
 //Listen for a click event on the question page
 questionPage.addEventListener("click", userAnswer);
-
+//Listen for click on the retry button at end of quiz
+retryBtn.addEventListener("click", retry)
+//Listen for click on the submit button at end of quiz
+submitBtn.addEventListener("click", )
 //////////////////////<<Functions//////////////////////
 
 //Game start function
@@ -79,6 +85,7 @@ function setTime() {
       //Stops game, shifts to scores page
       gameOver();
     }
+    //1 second intervals
   }, 1000);
 }
 
@@ -152,7 +159,20 @@ function gameOver() {
   timerEl.style.display = "none";
   //shows score page
   scorePage.style.display = "block";
-  //creates user score
-  var UserScore = timeRemaining
-  console.log(UserScore)
+  //if timer hit 0
+  if (timeRemaining < 1) {
+    scorePageText.textContent = "Your score is 0. Better luck next time."    
+  } else {
+    //if they finished all questions
+    scorePageText.textContent = "Your score is " + timeRemaining + ". Good Job!"
+  }
+}
+
+//Reloads the webpage
+function retry() {
+  window.location.reload
+}
+
+function submit() {
+  
 }
