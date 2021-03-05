@@ -56,4 +56,6 @@ body {
 
 #score-page {
   display: none;
+  font-size: 24px;
+  color: var(--darktoneColor);
 }
