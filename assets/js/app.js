@@ -8,7 +8,7 @@ var timeRemaining = 60;
 var startBtn = document.querySelector("#start-btn")
 var startPage = document.getElementById("start-page")
 
-//Question Array
+//Question Array + Answers
 var questions = [
   {
     questiontext: "Which planet is the hottest in the solar system?",
@@ -26,16 +26,10 @@ var questions = [
     correctanswer: "Earthquakes"
   },
   {
-    questiontext: "",
-    answers:[""],
-    correctanswer: ""
-  },
-  {
-    questiontext: "",
-    answers:[""],
-    correctanswer: ""
-  },
-
+    questiontext: "Which element is said to keep bones strong?",
+    answers:["Iron", "Sodium", "Zinc", "Calcium"],
+    correctanswer: "Calcium"
+  }
 ]
 
 //Timer countdown function
@@ -44,10 +38,12 @@ function setTime() {
     timeRemaining--;
     timerEl.textContent = "Time: " + timeRemaining;
 
-    //Timer reaches 0 logic
+    // when timer reaches 0 logic
     if (timeRemaining === 0) {
+      //Stops timer
       clearInterval(Countdown);
-      console.log("You Lost!");
+      //Stops game, shifts to scores page
+      gameOver()
     }
   }, 1000);
 }
