@@ -41,19 +41,34 @@ var questions = [
   },
 ];
 
+//Variable to track question index
+var currentQuestion = 0
+
 //////////////////////<<Event Listeners//////////////////////
 
 // Listen for a click event on start button, triggers game start function
-startBtn.addEventListener("click", gameStart());
+startBtn.addEventListener("click", gameStart);
 
 
 //////////////////////<<Functions//////////////////////
+
+//Game start function
+function gameStart() {
+  //Hides start-page element
+  startPage.style.display = "none";
+  //show question-page element
+  questionPage.style.display = "inline-block";
+  //starts countdown timer function
+  setTime();
+  //starts question generation function
+  questionGeneration();
+}
+
 //Timer countdown function
 function setTime() {
   var Countdown = setInterval(function () {
     //Updates timer with currewnt time remaining
     timerEl.textContent = "Time: " + timeRemaining;
-    
     // when timer reaches 0 logic
     if (timeRemaining === 0) {
       //Stops timer
@@ -66,14 +81,15 @@ function setTime() {
   }, 1000);
 }
 
-//Game start function
-function gameStart() {
-  //Hides start-page element
-  startPage.style.display = "none";
-  //show question-page element
-  questionPage.style.display = "inline-block";
-  //Runs countdown timer
-  setTime();
+function questionGeneration() {
+
+  //Creates a variable to pull the current question into
+  var Question = questions[currentQuestion]
+  console.log(Question)
+}
+
+function answer(){
+
 }
 
 
