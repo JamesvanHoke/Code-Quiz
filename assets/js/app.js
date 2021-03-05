@@ -122,6 +122,8 @@ function questionGeneration() {
   }
 }
 
+
+//Handles user clicking on buttons during quiz
 function userAnswer(e) {
   // Makes sure that the click is on a button since the listener is attached to the div
   if (!e.target.matches("button")) {
@@ -139,10 +141,11 @@ function userAnswer(e) {
 
   // Check if user was correct
   if (UsersChoice !== Correct) {
-    //If answer is incorrect, subtract 10 seconds from remaining time
+    //If answer is incorrect, subtract 10 seconds from remaining time + give them incorrect notice
     timeRemaining -= 10;
     questionResult.textContent = "Your answer was: Incorrect!";
   } else {
+    //give them correct notice
     questionResult.textContent = "Your answer was: Correct!";
   }
   // advance to next question
@@ -166,6 +169,7 @@ function gameOver() {
   scorePage.style.display = "block";
   //if timer hit 0
   if (timeRemaining < 1) {
+    //feelsbadman quiz failure
     scorePageText.textContent = "Your score is 0. Better luck next time.";
   } else {
     clearInterval(setTime);
