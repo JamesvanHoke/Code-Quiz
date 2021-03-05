@@ -34,9 +34,10 @@ body {
 
 }
 /* Fixes border clipping the start button was having */
-#start-page {
+#start-page,
+#score-page,
+#question-page {
   padding-bottom: 10px;
-  display: block;
 }
 
 .btn-primary {

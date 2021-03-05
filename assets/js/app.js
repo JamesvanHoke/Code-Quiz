@@ -41,8 +41,6 @@ var questions = [
   },
 ];
 
-//Variable to track question index
-var currentQuestion = 0
 
 //////////////////////<<Event Listeners//////////////////////
 
@@ -57,7 +55,7 @@ function gameStart() {
   //Hides start-page element
   startPage.style.display = "none";
   //show question-page element
-  questionPage.style.display = "inline-block";
+  questionPage.style.display = "block";
   //starts countdown timer function
   setTime();
   //starts question generation function
@@ -82,14 +80,32 @@ function setTime() {
 }
 
 function questionGeneration() {
-
-  //Creates a variable to pull the current question into
+  //Variable to track question index
+  var currentQuestion = 0
+  
+  //variable to pull the question text into. Index is handled by current question
   var Question = questions[currentQuestion]
-  console.log(Question)
+
+  //Sets the main text area to value of questiontext within the objection of Question
+  questionText.textContent = Question.questiontext
+
+  //for loop to generate a button/text for each possible answer
+  for (var i = 0; i < Question.answers.length; i++) {
+    // Creates an answertext variable to store answer text
+    var answerText = Question.answers[i];
+    //creates a button
+    var btn = document.createElement("button");
+    //adds the possible answers to the button
+    btn.textContent = answerText;
+    //adds classes to the buttons to style them
+    btn.classList.add("btn", "btn-primary")
+    //appends the button w/ text to the question page
+    questionPage.appendChild(btn);
+  }
 }
 
 function answer(){
-
+  
 }
 
 
