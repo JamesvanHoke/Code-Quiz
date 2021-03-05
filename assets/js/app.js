@@ -5,8 +5,14 @@ var timerEl = document.querySelector("#timer");
 var timeRemaining = 60;
 
 //Start Page
-var startBtn = document.querySelector("#start-btn")
-var startPage = document.getElementById("start-page")
+var startBtn = document.querySelector("#start-btn");
+var startPage = document.getElementById("start-page");
+
+//Question Page
+var questionPage = document.getElementById("question-page");
+var questionText = document.getElementById("question-text");
+var questionAnswer = document.getElementById("answers");
+var questionResult = document.getElementById("answersResult")
 
 //Question Array + Answers
 var questions = [
@@ -51,10 +57,11 @@ function setTime() {
 // Listen for a click event on start button
 startBtn.addEventListener("click", function(){
     //Hides start-page element
-    startPage.style.display = "none"
+    startPage.style.display = "none";
     //show question-page element
-    document.getElementById("question-page").style.display = "inline-block"
+    questionPage.style.display = "inline-block";
     //Runs countdown timer
+    setTime()
 })
 
 startBtn.addEventListener("click", setTime())
