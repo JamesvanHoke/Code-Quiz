@@ -83,16 +83,14 @@ function setTime() {
 }
 
 function questionGeneration() {
-
-
   //variable to pull the question text into. Index is handled by current question
   var Question = questions[currentQuestion];
 
+  //Wipes previous buttons. 
+  questionAnswer.innerHTML="";
+
   //Sets the main text area to value of questiontext within the objection of Question
   questionText.textContent = Question.questiontext;
-
-  //Wipes previous buttons. 
-  questionPage.children.innerHTML="";
 
   //for loop to generate a button/text for each possible answer
   for (var i = 0; i < Question.answers.length; i++) {
@@ -109,7 +107,7 @@ function questionGeneration() {
     btn.classList.add("btn", "btn-primary");
 
     //appends the button w/ text to the question page
-    questionPage.appendChild(btn);
+    questionAnswer.appendChild(btn);
   }
 }
 
@@ -127,7 +125,6 @@ function userAnswer(e) {
 
   //Pulls answer text from above variable
   var Correct = Question.correctanswer;
-
 
   // Check if user was correct
   if (UsersChoice === Correct) {
