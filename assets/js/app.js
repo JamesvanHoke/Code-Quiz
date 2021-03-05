@@ -49,8 +49,9 @@ var currentQuestion = 0;
 
 //High Score Page
 
-var HiScorePage = document.getElementById("highscore-page");
-var UserInitials = document.getElementById("userName")
+var HighScorePage = document.getElementById("highscore-page");
+var HighScoreReadout = document.getElementById("highscore-readout")
+var UserInitials = document.getElementById("userName");
 
 //////////////////////Event Listeners//////////////////////
 
@@ -78,18 +79,18 @@ function gameStart() {
 }
 
 //Timer countdown function
-  function Countdown() {
-    if (timeRemaining >= 1) {
-      //Reduces time remaining by 1
-      timeRemaining--;
-    }
-    //Updates timer with currewnt time remaining
-    timerEl.textContent = "Time: " + timeRemaining;
-    // when timer reaches 0 logic
-    if (timeRemaining === 0) {
-      //Stops game, shifts to scores page
-      gameOver();
-    }
+function Countdown() {
+  if (timeRemaining >= 1) {
+    //Reduces time remaining by 1
+    timeRemaining--;
+  }
+  //Updates timer with current time remaining
+  timerEl.textContent = "Time: " + timeRemaining;
+  // when timer reaches 0 logic
+  if (timeRemaining === 0) {
+    //Stops game, shifts to scores page
+    gameOver();
+  }
 }
 
 function questionGeneration() {
@@ -167,7 +168,7 @@ function gameOver() {
   if (timeRemaining < 1) {
     scorePageText.textContent = "Your score is 0. Better luck next time.";
   } else {
-    clearInterval(setTime)
+    clearInterval(setTime);
     //if they finished all questions
     scorePageText.textContent =
       "Your score is " + timeRemaining + ". Good Job!";
@@ -182,20 +183,37 @@ function retry() {
 
 //submits user initials + score to local storage
 function submit() {
-  // if (userName === "") {
-  //   Create function to alert that a blank value is not accepted
+  //Create object that stores the users initials and their score
+  var userdata = {
+    UserInitials: UserInitials.value,
+    score: timeRemaining,
+  };
 
-  // } else 
-  {
-    var user = {
-      UserInitials: UserInitials.value(),
-      score: timeRemaining
-    };
+  //creates a variable that pulls from local storage if it already exists, or sets itself as an empty array if no highscores exist yet.
+  var scores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-      scorePage.style.display = "none";
-      HiScorePage.style.display = "block";
-      localStorage.setItem("HiScore", user);
-    // renderHighScore();
-  }
+  // pushes/adds the current users score to the high score array.
+  scores.push(userdata);
+
+  //saves new/updated highscore to local storage after stringifying
+  localStorage.setItem("highscores", JSON.stringify(scores));
+
+  //Transitions user to the highscore page
+  HighScore(userdata);
 }
-//
+
+function HighScore(userdata) {
+  //hides score page
+  scorePage.style.display = "none";
+  //shows high score page
+  HighScorePage.style.display = "block";
+  //displays users score
+  HighScoreReadout.textContent = "Name: " + userdata.UserInitials + " Score: " + userdata.score;
+}
+
+//TODO
+//Local storage high scores
+//parse data
+//pull data from JS Array
+//Sort high scores from highest to lowest
+//display highscores in table

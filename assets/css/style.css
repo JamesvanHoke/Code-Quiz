@@ -65,3 +65,9 @@ body {
   font-size: 24px;
   color: var(--darktoneColor);
 }
+
+#highscore-readout {
+    font-size: 24px;
+    color: var(--darktoneColor);
+    padding-bottom: 10px;
+}

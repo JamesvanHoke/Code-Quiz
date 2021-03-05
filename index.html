@@ -43,17 +43,19 @@
       <!-- Score block -->
       <div id="score-page">
         <div id="score-page-text"></div>
-        <div>
-          <label for="initials">Initials:</label>
+        <form method="POST">
+          <label for="initials">Your Initials: </label>
           <input type="text" name="initials" id="userName" placeholder="JVH" />
           <div id="submit-error"></div>
-        </div>
+        </form>
         <button id="submit-btn" class="btn btn-primary">Submit Score</button>
         <button id="retry-btn" class="btn btn-primary">Retry Quiz</button>
       </div>
       <!-- High Scores -->
       <div id="highscore-page">
-
+        <h1>High Scores</h1>
+        <hr>
+        <div id="highscore-readout"></div>
       </div>
     </div>
 
