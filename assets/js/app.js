@@ -15,7 +15,7 @@ var questionAnswer = document.getElementById("answers");
 var questionResult = document.getElementById("answersResult");
 
 //Score Page
-var scorePage = document.getElementById("score-page")
+var scorePage = document.getElementById("score-page");
 
 //Question Array + Answers
 var questions = [
@@ -41,15 +41,15 @@ var questions = [
   },
 ];
 
-var currentQuestion = 0
+//Variable to track question index
+var currentQuestion = 0;
 
 //////////////////////<<Event Listeners//////////////////////
 
 // Listen for a click event on start button, triggers game start function
 startBtn.addEventListener("click", gameStart);
 //Listen for a click event on the question page
-questionPage.addEventListener("click", userAnswer)
-
+questionPage.addEventListener("click", userAnswer);
 
 //////////////////////<<Functions//////////////////////
 
@@ -83,17 +83,19 @@ function setTime() {
 }
 
 function questionGeneration() {
-  //Variable to track question index
-  
+
+
   //variable to pull the question text into. Index is handled by current question
-  var Question = questions[currentQuestion]
+  var Question = questions[currentQuestion];
 
   //Sets the main text area to value of questiontext within the objection of Question
-  questionText.textContent = Question.questiontext
+  questionText.textContent = Question.questiontext;
+
+  //Wipes previous buttons. 
+  questionPage.children.innerHTML="";
 
   //for loop to generate a button/text for each possible answer
   for (var i = 0; i < Question.answers.length; i++) {
-
     // Creates an answertext variable to store answer text
     var answerText = Question.answers[i];
 
@@ -111,34 +113,33 @@ function questionGeneration() {
   }
 }
 
-function userAnswer(e){
-
+function userAnswer(e) {
   // Makes sure that the click is on a button since the listener is attached to the div
-  if (!e.target.matches('button')){
+  if (!e.target.matches("button")) {
     return;
   }
-  
+
   //Pulls the text content of the users choice as a string and stores it as a variable
   var UsersChoice = e.target.textContent;
 
   //Pulls current question.
-  var Question = questions[currentQuestion]
+  var Question = questions[currentQuestion];
 
   //Pulls answer text from above variable
-  var Correct = Question.correctanswer
+  var Correct = Question.correctanswer;
 
- //If answer is incorrect, subtract 10 seconds from remaining time
+
+  // Check if user was correct
   if (UsersChoice === Correct) {
-    currentQuestion++
-  }
-  else {
+    // if correct: advance to next question
+    currentQuestion++;
+    //Load next question
+    questionGeneration();
+  } else {
+    //If answer is incorrect, subtract 10 seconds from remaining time
     timeRemaining -= 10;
   }
-  //advance to next question
-  currentQuestion++
-
 }
-
 
 function gameOver() {
   //hides question page
@@ -146,13 +147,10 @@ function gameOver() {
   //shows score page
   scorePage.style.display = "inline-block";
 
-
   //Check for time < 1, if  less than one, give game over
   //if > 1 display score
   //ask them to record score
 }
-
-
 
 // LOGIC - JS
 // click the start button
