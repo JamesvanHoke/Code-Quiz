@@ -38,7 +38,7 @@ var questions = [
     questiontext: "Which element is said to keep bones strong?",
     answers: ["Iron", "Sodium", "Zinc", "Calcium"],
     correctanswer: "Calcium",
-  },
+  }
 ];
 
 //Variable to track question index
@@ -68,17 +68,17 @@ function gameStart() {
 //Timer countdown function
 function setTime() {
   var Countdown = setInterval(function () {
+    if (timeRemaining > 1) {
+      //Reduces time remaining by 1
+      timeRemaining--;
+    }
     //Updates timer with currewnt time remaining
     timerEl.textContent = "Time: " + timeRemaining;
     // when timer reaches 0 logic
-    if (timeRemaining === 0) {
-      //Stops timer
-      clearInterval(Countdown);
+    if (timeRemaining < 0) {
       //Stops game, shifts to scores page
       gameOver();
     }
-    //Reduces time remaining by 1
-    timeRemaining--;
   }, 1000);
 }
 
@@ -86,8 +86,8 @@ function questionGeneration() {
   //variable to pull the question text into. Index is handled by current question
   var Question = questions[currentQuestion];
 
-  //Wipes previous buttons. 
-  questionAnswer.innerHTML="";
+  //Wipes previous buttons.
+  questionAnswer.innerHTML = "";
 
   //Sets the main text area to value of questiontext within the objection of Question
   questionText.textContent = Question.questiontext;
@@ -127,80 +127,32 @@ function userAnswer(e) {
   var Correct = Question.correctanswer;
 
   // Check if user was correct
-  if (UsersChoice === Correct) {
-    // if correct: advance to next question
-    currentQuestion++;
-    //Load next question
-    questionGeneration();
-  } else {
+  if (UsersChoice !== Correct) {
     //If answer is incorrect, subtract 10 seconds from remaining time
     timeRemaining -= 10;
+  }
+  // advance to next question
+  currentQuestion++;
+
+  //Exit to score page if all questions are answered
+  if (currentQuestion === questions.length) {
+    console.log("You beat the game")
+    gameOver();
+  }
+  else {
+    //Load next question
+    questionGeneration();
   }
 }
 
 function gameOver() {
   //hides question page
   questionPage.style.display = "none";
+  //hides timer
+  timerEl.style.display = "none";
   //shows score page
-  scorePage.style.display = "inline-block";
-
-  //Check for time < 1, if  less than one, give game over
-  //if > 1 display score
-  //ask them to record score
+  scorePage.style.display = "block";
+  //creates user score
+  var UserScore = timeRemaining
+  console.log(UserScore)
 }
-
-// LOGIC - JS
-// click the start button
-//     timer starts
-//     I am presented with a question
-
-// answer a question
-//     presented with another question
-
-// if question incorrect
-//     time subtracted
-
-// if no more questions or the timer reaches 0
-//     game over
-//         ask for user initials
-//         save initial and score
-
-// HTML area
-// Start Page
-//     start button
-//     Title with explanation
-// Question page
-//     timer area
-//     Question area
-//     Answer area - 4 answer buttons
-//         a)
-//         b)
-//         c)
-//         d)
-// Score Page
-
-// PROGRAM LOGIC
-// start button
-//     a timer starts
-//     presented with question1 text
-//     presented with question1 answer buttons
-
-// click on a question answer button
-//     if that was last question
-//         game is over
-//             diplay game over
-//             calculate userScore
-//             ask user for initials
-//                 save user intials and userScore together
-//     if answer incorrect
-//         time is subtracted from the clock
-//     present next question
-//         question[i+1] text
-//         question[i+1] answer buttons
-
-// SECTIONS
-// Main page
-//     Timer area ✅
-//     Question area
-//     Link to view High Scores
-// High Scores Page
