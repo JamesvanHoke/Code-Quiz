@@ -54,9 +54,10 @@ startBtn.addEventListener("click", gameStart);
 //Listen for a click event on the question page
 questionPage.addEventListener("click", userAnswer);
 //Listen for click on the retry button at end of quiz
-retryBtn.addEventListener("click", retry)
+retryBtn.addEventListener("click", retry);
+
 //Listen for click on the submit button at end of quiz
-submitBtn.addEventListener("click", )
+submitBtn.addEventListener("click", submit)
 //////////////////////<<Functions//////////////////////
 
 //Game start function
@@ -74,14 +75,14 @@ function gameStart() {
 //Timer countdown function
 function setTime() {
   var Countdown = setInterval(function () {
-    if (timeRemaining > 1) {
+    if (timeRemaining >= 1) {
       //Reduces time remaining by 1
       timeRemaining--;
     }
     //Updates timer with currewnt time remaining
     timerEl.textContent = "Time: " + timeRemaining;
     // when timer reaches 0 logic
-    if (timeRemaining < 0) {
+    if (timeRemaining === 0) {
       //Stops game, shifts to scores page
       gameOver();
     }
@@ -137,13 +138,15 @@ function userAnswer(e) {
   if (UsersChoice !== Correct) {
     //If answer is incorrect, subtract 10 seconds from remaining time
     timeRemaining -= 10;
+    questionResult.textContent = "Your answer was: Incorrect!"
+  } else {
+    questionResult.textContent = "Your answer was: Correct!"
   }
   // advance to next question
   currentQuestion++;
 
   //Exit to score page if all questions are answered
   if (currentQuestion === questions.length) {
-    console.log("You beat the game")
     gameOver();
   }
   else {
@@ -168,11 +171,13 @@ function gameOver() {
   }
 }
 
-//Reloads the webpage
+//Reloads the window
 function retry() {
-  window.location.reload
+  //Used instead of window.location.reload since that wasn't working
+  window.location.href = window.location.href;
 }
 
+//submits user initials + score to local storage
 function submit() {
-  
 }
+  // 
