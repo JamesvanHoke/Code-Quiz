@@ -50,6 +50,7 @@ var currentQuestion = 0;
 //High Score Page
 
 var HiScorePage = document.getElementById("highscore-page");
+var UserInitials = document.getElementById("userName")
 
 //////////////////////Event Listeners//////////////////////
 
@@ -66,19 +67,18 @@ submitBtn.addEventListener("click", submit);
 
 //Game start function
 function gameStart() {
+  //Interval prompt for timer
+  setTime = setInterval(Countdown, 1000);
   //Hides start-page element
   startPage.style.display = "none";
   //show question-page element
   questionPage.style.display = "block";
-  //starts countdown timer function
-  setTime();
   //starts question generation function
   questionGeneration();
 }
 
 //Timer countdown function
-function setTime() {
-  var Countdown = setInterval(function () {
+  function Countdown() {
     if (timeRemaining >= 1) {
       //Reduces time remaining by 1
       timeRemaining--;
@@ -90,8 +90,6 @@ function setTime() {
       //Stops game, shifts to scores page
       gameOver();
     }
-    //1 second intervals
-  }, 1000);
 }
 
 function questionGeneration() {
@@ -169,6 +167,7 @@ function gameOver() {
   if (timeRemaining < 1) {
     scorePageText.textContent = "Your score is 0. Better luck next time.";
   } else {
+    clearInterval(setTime)
     //if they finished all questions
     scorePageText.textContent =
       "Your score is " + timeRemaining + ". Good Job!";
@@ -183,17 +182,20 @@ function retry() {
 
 //submits user initials + score to local storage
 function submit() {
-  var userName = document.getElementById("userName").value;
+  // if (userName === "") {
+  //   Create function to alert that a blank value is not accepted
 
-  
-  if (userName === "") {
-    displayMessage("error", "Initials cannot be blank.");
+  // } else 
+  {
+    var user = {
+      UserInitials: UserInitials.value(),
+      score: timeRemaining
+    };
 
-  } else {
-    scorePage.style.display = "none";
-    HiScorePage.style.display = "block";
-    localStorage.setItem("userName", userName);
-    renderLastRegistered();
+      scorePage.style.display = "none";
+      HiScorePage.style.display = "block";
+      localStorage.setItem("HiScore", user);
+    // renderHighScore();
   }
 }
 //
