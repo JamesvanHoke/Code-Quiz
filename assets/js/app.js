@@ -41,11 +41,14 @@ var questions = [
   },
 ];
 
+var currentQuestion = 0
 
 //////////////////////<<Event Listeners//////////////////////
 
 // Listen for a click event on start button, triggers game start function
 startBtn.addEventListener("click", gameStart);
+//Listen for a click event on the question page
+questionPage.addEventListener("click", userAnswer)
 
 
 //////////////////////<<Functions//////////////////////
@@ -81,7 +84,6 @@ function setTime() {
 
 function questionGeneration() {
   //Variable to track question index
-  var currentQuestion = 0
   
   //variable to pull the question text into. Index is handled by current question
   var Question = questions[currentQuestion]
@@ -91,21 +93,50 @@ function questionGeneration() {
 
   //for loop to generate a button/text for each possible answer
   for (var i = 0; i < Question.answers.length; i++) {
+
     // Creates an answertext variable to store answer text
     var answerText = Question.answers[i];
+
     //creates a button
     var btn = document.createElement("button");
+
     //adds the possible answers to the button
     btn.textContent = answerText;
+
     //adds classes to the buttons to style them
-    btn.classList.add("btn", "btn-primary")
+    btn.classList.add("btn", "btn-primary");
+
     //appends the button w/ text to the question page
     questionPage.appendChild(btn);
   }
 }
 
-function answer(){
+function userAnswer(e){
+
+  // Makes sure that the click is on a button since the listener is attached to the div
+  if (!e.target.matches('button')){
+    return;
+  }
   
+  //Pulls the text content of the users choice as a string and stores it as a variable
+  var UsersChoice = e.target.textContent;
+
+  //Pulls current question.
+  var Question = questions[currentQuestion]
+
+  //Pulls answer text from above variable
+  var Correct = Question.correctanswer
+
+ //If answer is incorrect, subtract 10 seconds from remaining time
+  if (UsersChoice === Correct) {
+    currentQuestion++
+  }
+  else {
+    timeRemaining -= 10;
+  }
+  //advance to next question
+  currentQuestion++
+
 }
 
 
