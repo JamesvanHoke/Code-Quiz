@@ -54,6 +54,11 @@ body {
   display: none;
 }
 
+#answersResult {
+    font-size: 24px;
+    color: var(--darktoneColor);
+}
+
 #score-page {
   display: none;
   font-size: 24px;
