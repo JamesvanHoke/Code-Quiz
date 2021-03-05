@@ -50,7 +50,8 @@ body {
     border-color: var(--darktoneColor);
 }
 
-#question-page {
+#question-page,
+#highscore-page {
   display: none;
 }
 

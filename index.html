@@ -20,30 +20,41 @@
     <header id="header"><h1>Code Quiz!</h1></header>
     <!-- Container for Intro Page, Question Page, and High Score -->
     <div class="container container-custom">
-        <!-- Intro Page, Starter text, start button -->
+      <!-- Intro Page, Starter text, start button -->
       <div id="start-page">
         <h2>
           Test your coding know-how! Right questions move on, wrong questions
-          cost you score. Your score is equal to the time remaining when you finish!
+          cost you score. Your score is equal to the time remaining when you
+          finish!
         </h2>
-        <hr>
+        <hr />
         <h2>Click the start button to get started</h2>
-        <button id="start-btn" type="button" class="btn btn-primary">Start Quiz</button>
+        <button id="start-btn" type="button" class="btn btn-primary">
+          Start Quiz
+        </button>
       </div>
       <!-- Question block with answer buttons -->
       <div id="question-page">
         <h2 id="question-text"></h2>
         <div id="answers"></div>
-        <hr>
+        <hr />
         <div id="answersResult"></div>
       </div>
       <!-- Score block -->
       <div id="score-page">
         <div id="score-page-text"></div>
-        <button id="submit-btn" class="btn btn-primary">Submit Score?</button>
-        <button id="retry-btn" class="btn btn-primary">Retry?</button>
+        <div>
+          <label for="initials">Initials:</label>
+          <input type="text" name="initials" id="userName" placeholder="JVH" />
+          <div id="submit-error"></div>
+        </div>
+        <button id="submit-btn" class="btn btn-primary">Submit Score</button>
+        <button id="retry-btn" class="btn btn-primary">Retry Quiz</button>
       </div>
       <!-- High Scores -->
+      <div id="highscore-page">
+
+      </div>
     </div>
 
     <!-- Javascript Link -->

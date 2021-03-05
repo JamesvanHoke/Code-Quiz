@@ -41,13 +41,17 @@ var questions = [
     questiontext: "Which element is said to keep bones strong?",
     answers: ["Iron", "Sodium", "Zinc", "Calcium"],
     correctanswer: "Calcium",
-  }
+  },
 ];
 
 //Variable to track question index
 var currentQuestion = 0;
 
-//////////////////////<<Event Listeners//////////////////////
+//High Score Page
+
+var HiScorePage = document.getElementById("highscore-page");
+
+//////////////////////Event Listeners//////////////////////
 
 // Listen for a click event on start button, triggers game start function
 startBtn.addEventListener("click", gameStart);
@@ -55,9 +59,9 @@ startBtn.addEventListener("click", gameStart);
 questionPage.addEventListener("click", userAnswer);
 //Listen for click on the retry button at end of quiz
 retryBtn.addEventListener("click", retry);
-
 //Listen for click on the submit button at end of quiz
-submitBtn.addEventListener("click", submit)
+submitBtn.addEventListener("click", submit);
+
 //////////////////////<<Functions//////////////////////
 
 //Game start function
@@ -138,9 +142,9 @@ function userAnswer(e) {
   if (UsersChoice !== Correct) {
     //If answer is incorrect, subtract 10 seconds from remaining time
     timeRemaining -= 10;
-    questionResult.textContent = "Your answer was: Incorrect!"
+    questionResult.textContent = "Your answer was: Incorrect!";
   } else {
-    questionResult.textContent = "Your answer was: Correct!"
+    questionResult.textContent = "Your answer was: Correct!";
   }
   // advance to next question
   currentQuestion++;
@@ -148,8 +152,7 @@ function userAnswer(e) {
   //Exit to score page if all questions are answered
   if (currentQuestion === questions.length) {
     gameOver();
-  }
-  else {
+  } else {
     //Load next question
     questionGeneration();
   }
@@ -164,10 +167,11 @@ function gameOver() {
   scorePage.style.display = "block";
   //if timer hit 0
   if (timeRemaining < 1) {
-    scorePageText.textContent = "Your score is 0. Better luck next time."    
+    scorePageText.textContent = "Your score is 0. Better luck next time.";
   } else {
     //if they finished all questions
-    scorePageText.textContent = "Your score is " + timeRemaining + ". Good Job!"
+    scorePageText.textContent =
+      "Your score is " + timeRemaining + ". Good Job!";
   }
 }
 
@@ -179,5 +183,17 @@ function retry() {
 
 //submits user initials + score to local storage
 function submit() {
+  var userName = document.getElementById("userName").value;
+
+  
+  if (userName === "") {
+    displayMessage("error", "Initials cannot be blank.");
+
+  } else {
+    scorePage.style.display = "none";
+    HiScorePage.style.display = "block";
+    localStorage.setItem("userName", userName);
+    renderLastRegistered();
+  }
 }
-  // 
+//
