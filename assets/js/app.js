@@ -1,4 +1,4 @@
-// Variables
+//////////////////////Variables//////////////////////
 
 //Timer
 var timerEl = document.querySelector("#timer");
@@ -12,72 +12,82 @@ var startPage = document.getElementById("start-page");
 var questionPage = document.getElementById("question-page");
 var questionText = document.getElementById("question-text");
 var questionAnswer = document.getElementById("answers");
-var questionResult = document.getElementById("answersResult")
+var questionResult = document.getElementById("answersResult");
+
+//Score Page
+var scorePage = document.getElementById("score-page")
 
 //Question Array + Answers
 var questions = [
   {
     questiontext: "Which planet is the hottest in the solar system?",
-    answers:["Venus", "Mercury", "Uranus", "Saturn"],
-    correctanswer: "Venus"
+    answers: ["Venus", "Mercury", "Uranus", "Saturn"],
+    correctanswer: "Venus",
   },
   {
     questiontext: "Which body part can you find the femur?",
-    answers:["Arm", "Head", "Spine", "Leg"],
-    correctanswer: "Leg"
+    answers: ["Arm", "Head", "Spine", "Leg"],
+    correctanswer: "Leg",
   },
   {
     questiontext: "Which natural disaster is measured with a Richter scale?",
-    answers:["Hurricanes", "Earthquakes", "Tornados", "Wildfires"],
-    correctanswer: "Earthquakes"
+    answers: ["Hurricanes", "Earthquakes", "Tornados", "Wildfires"],
+    correctanswer: "Earthquakes",
   },
   {
     questiontext: "Which element is said to keep bones strong?",
-    answers:["Iron", "Sodium", "Zinc", "Calcium"],
-    correctanswer: "Calcium"
-  }
-]
+    answers: ["Iron", "Sodium", "Zinc", "Calcium"],
+    correctanswer: "Calcium",
+  },
+];
 
+//////////////////////<<Event Listeners//////////////////////
+
+// Listen for a click event on start button, triggers game start function
+startBtn.addEventListener("click", gameStart());
+
+
+//////////////////////<<Functions//////////////////////
 //Timer countdown function
 function setTime() {
   var Countdown = setInterval(function () {
-    timeRemaining--;
+    //Updates timer with currewnt time remaining
     timerEl.textContent = "Time: " + timeRemaining;
-
+    
     // when timer reaches 0 logic
     if (timeRemaining === 0) {
       //Stops timer
       clearInterval(Countdown);
       //Stops game, shifts to scores page
-      gameOver()
+      gameOver();
     }
+    //Reduces time remaining by 1
+    timeRemaining--;
   }, 1000);
 }
 
-// Listen for a click event on start button
-startBtn.addEventListener("click", function(){
-    //Hides start-page element
-    startPage.style.display = "none";
-    //show question-page element
-    questionPage.style.display = "inline-block";
-    //Runs countdown timer
-    setTime()
-})
-
-startBtn.addEventListener("click", setTime())
+//Game start function
+function gameStart() {
+  //Hides start-page element
+  startPage.style.display = "none";
+  //show question-page element
+  questionPage.style.display = "inline-block";
+  //Runs countdown timer
+  setTime();
+}
 
 
+function gameOver() {
+  //hides question page
+  questionPage.style.display = "none";
+  //shows score page
+  scorePage.style.display = "inline-block";
 
 
-
-
-
-
-
-
-
-
-
+  //Check for time < 1, if  less than one, give game over
+  //if > 1 display score
+  //ask them to record score
+}
 
 
 
