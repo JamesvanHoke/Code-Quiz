@@ -1,34 +1,57 @@
-#header {
-    padding-top: 20px;
-    padding-bottom: 40px;
+:root {
+  --mainColor: #5cdb95;
+  --textColor: #edf5e1;
+  --darkColor: #05386b;
+  --highlightColor: #8ee4af;
+  --darktoneColor: #379683;
 }
 
 body {
-    text-align: center;
+  text-align: center;
+  color: var(--textColor);
+  background-color: var(--darkColor);
 }
 
-.container-bgcolor {
-    background-color: #ddbea9;
+/* Main section, contains Start, Question, and Score Pages */
+.container-custom {
+  background-color: var(--mainColor);
+  border: solid 3px var(--darktoneColor);
+  border-radius: 15px;
 }
 
+/* Places padding to move the main quiz area down the page some */
+#header {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+/* Positions the timer in the Upper Right corner gives it a background + border*/
 #timer {
-    position: fixed;
-    top: 40px;
-    right: 20px
-}
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: xx-large;
 
-html,
-body,
-.wrapper {
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
-
+/* Fixes border clipping the start button was having */
 #start-page {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: var(--darktoneColor);
+    border-color: var(--darktoneColor);
+}
+
+.btn-primary:hover{
+    background-color: var(--highlightColor);
+    border-color: var(--darktoneColor);
 }
 
 #question-page {
-    display:none;
+  display: none;
+}
+
+#score-page {
+  display: none;
 }
